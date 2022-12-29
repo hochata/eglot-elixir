@@ -4,14 +4,21 @@ Automatically download, install and keep up to date elixir-ls
 (https://github.com/elixir-lsp/elixir-ls) and set it up for use with eglot.
 
 Usage:
-
+After adding this package to your load path
 #+BEGIN_SRC emacs-lisp
 ;; After eglot is loaded
-(require 'eglot-elixir)
+(add-to-list 'eglot-server-programs `(elixir-mode . eglot-elixir))
+#+END_SRC
+
+Or if you are using the new Elixir mode with Treesitter support ([[https://github.com/wkirschbaum/elixir-ts-mode][elixir-ts-mode]])
+#+BEGIN_SRC emacs-lisp
+;; After eglot is loaded
+(add-to-list 'eglot-server-programs `(elixir-ts-mode . eglot-elixir))
+(add-to-list 'eglot-server-programs `(heex-ts-mode . eglot-elixir))
 #+END_SRC
 
 This sets eglot up to use this packages' ~eglot-elixir~ function as startup
-function for eglot for the ~elixir-mode~ major mode.
+function for eglot.
 
 For the first run, eglot should be started manually by executing ~M-x eglot~ in
-an ~elixir-mode~ buffer.
+an Elixir buffer.

@@ -4,7 +4,7 @@
 
 ;; Author: Bart van Nierop <mail@bvnierop.nl>
 ;; Version: 0.1
-;; Package-Requires: ((eglot "1.4") (elixir-mode "2.4"))
+;; Package-Requires: ((eglot "1.4"))
 ;; Keywords: languages
 ;; URL: https://github.com/bvnierop/eglot-elixir
 
@@ -39,16 +39,15 @@
 ;; Usage:
 ;;
 ;; ;; After eglot is loaded
-;; (require 'eglot-elixir)
+;; (add-to-list 'eglot-server-programs '(elixir-mode . eglot-elixir))
 ;;
 ;; This sets eglot up to use this packages' `eglot-elixir' function as
-;; startup function for eglot for the `elixir-mode' major mode. Before
-;; launching it will install / update elixir-ls.
+;; startup function for eglot for the Elixir. Before launching it will
+;; install / update elixir-ls.
 
 ;;; Code:
 
 (require 'eglot)
-(require 'elixir-mode)
 
 (defgroup eglot-elixir nil
   "LSP support for the Elixir programming language, using elixir-ls."
@@ -131,8 +130,6 @@ elixir-lsp when called INTERACTIVE."
 
 (defclass eglot-elixir-ls (eglot-lsp-server) ()
   :documentation "lsp server Elixir based on elixir-ls")
-
-(add-to-list 'eglot-server-programs `(elixir-mode . eglot-elixir))
 
 (provide 'eglot-elixir)
 
